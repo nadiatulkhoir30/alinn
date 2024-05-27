@@ -1,0 +1,76 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.10.13/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/codespace/.local/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/local/python/3.10.13/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/codespace/.local/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+A = np.array ([[1,2,4],[2,3,6],[3,1,5]]) 
+B = np.array ([[1,4,6],[4,2,8],[6,2,4]]) 
+C = np.array ([[2,3],[4,6],[4,2]])       
+D = np.array ([[2,4,5],[3,6,8],[5,4,9]]) 
+t = A*B*D
+print(t)
+print(" ")
+tt = t.transpose()
+print(tt)
+print(" ")
+print(" ")
+a = A.transpose()
+b = B.transpose()
+dd = D.transpose()
+print(a*b*dd)
+print(" ")
+print(" ")
+abd = (A+B)*D
+ABD = abd.transpose()
+print(ABD)
+print(" ")
+print(" ")
+abc = (A+B)*C
+ABC = abc.transpose()
+print(ABC)
+------------------
+
+----- stdout -----
+[[  2  32 120]
+ [ 24  36 384]
+ [ 90   8 180]]
+ 
+[[  2  24  90]
+ [ 32  36   8]
+ [120 384 180]]
+ 
+ 
+[[  2  24  90]
+ [ 32  36   8]
+ [120 384 180]]
+ 
+ 
+[[  4  18  45]
+ [ 24  30  12]
+ [ 50 112  81]]
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+Cell [0;32mIn[8], line 24[0m
+[1;32m     22[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124m [39m[38;5;124m"[39m)
+[1;32m     23[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124m [39m[38;5;124m"[39m)
+[0;32m---> 24[0m abc [38;5;241m=[39m [43m([49m[43mA[49m[38;5;241;43m+[39;49m[43mB[49m[43m)[49m[38;5;241;43m*[39;49m[43mC[49m
+[1;32m     25[0m ABC [38;5;241m=[39m abc[38;5;241m.[39mtranspose()
+[1;32m     26[0m [38;5;28mprint[39m(ABC)
+
+[0;31mValueError[0m: operands could not be broadcast together with shapes (3,3) (3,2) 
+
